@@ -83,7 +83,7 @@ int  blt_soft_timer_sort(void)
  * @return      0 - timer task is full, add fail
  * 				1 - create successfully
  */
-int blt_soft_timer_add(blt_timer_callback_t func, u32 interval_us)
+int blt_soft_timer_add(blt_timer_callback_t func, u32 interval_us) //RD_EDIT soft timer add
 {
 //	int i;
 	u32 now = clock_time();
@@ -139,7 +139,6 @@ int  blt_soft_timer_delete_by_index(u8 index)
  */
 int 	blt_soft_timer_delete(blt_timer_callback_t func)
 {
-
 
 	for(int i=0; i<blt_timer.currentNum; i++){
 		if(blt_timer.timer[i].cb == func){

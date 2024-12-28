@@ -212,7 +212,7 @@ extern "C" {
 #define KB_MAP_NORMAL			{{KEY_RESET},	{KEY_CMD}}
 
 #define KB_DRIVE_PINS			{GPIO_PD6} 	// make no sense, just for compile, not driver pin in KB_LINE_MODE=1.
-#define KB_SCAN_PINS			{GPIO_PD6, GPIO_PD5}
+#define KB_SCAN_PINS			{GPIO_PD6, GPIO_PD5}  //RD_EDIT sw1, sw2
 
 // scan pin as gpio
 #define PD5_FUNC				AS_GPIO
@@ -314,7 +314,7 @@ extern "C" {
 
 //---------------  LED / PWM
 #if(PCBA_8258_SEL == PCBA_8258_DONGLE_48PIN)
-#define PWM_R       GPIO_PWM1A3		//red
+#define PWM_R       GPIO_PB6   		//RD_EDIT led red (default: GPIO_PWM1A3)
 #define PWM_G       GPIO_PWM0A2		//green
 #define PWM_B       GPIO_PWM3B0		//blue
 #define PWM_W       GPIO_PWM4B1		//white
@@ -351,7 +351,7 @@ extern "C" {
 #define PWM_INV_B   (GET_PWM_INVERT_VAL(PWM_B, PWM_FUNC_B))
 #define PWM_INV_W   (GET_PWM_INVERT_VAL(PWM_W, PWM_FUNC_W))
 
-#define GPIO_LED	PWM_R
+#define GPIO_LED	PWM_R // RD_EDIT edit pin GPIO_LED
 
 
 /////////////open SWS digital pullup to prevent MCU err, this is must ////////////

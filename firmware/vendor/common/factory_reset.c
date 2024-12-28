@@ -606,10 +606,14 @@ void kick_out(int led_en){
 #endif
 #else
 	factory_reset();
+	extern void RD_LOG(const char *format, ...);
+	//RD_LOG("kick out\n");
+	show_factory_reset();
     #if !WIN32
-    if(led_en){
-        show_factory_reset();
-    }
+
+    //if(led_en){
+    	//show_factory_reset();
+    //}
     mesh_start_reboot();
     #endif
 #endif

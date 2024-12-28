@@ -568,6 +568,12 @@ void uart_gpio_set(UART_TxPinDef tx_pin,UART_RxPinDef rx_pin)
 
 }
 
+unsigned char uart_Csend(char *data){
+	while(*data != '\0'){
+		uart_ndma_send_byte(*(data++));
+	}
+	return 0;
+}
 
 
 

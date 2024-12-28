@@ -1330,7 +1330,7 @@ u8 mesh_appkey_bind(u16 op, u16 ele_adr, u32 model_id, bool4 sig_model, u16 appk
     }else{
     	st = ST_INVALID_MODEL;
     }
-	mesh_node_refresh_binding_tick();
+	mesh_node_refresh_binding_tick(); // RD_EDIT refresh binding tick
     return st;
 }
 
@@ -1359,7 +1359,7 @@ u8 mesh_appkey_bind_and_share(u16 op, u16 ele_adr, u32 model_id, bool4 sig_model
 	return st;
 }
 
-int mesh_cmd_sig_cfg_bind(u8 *par, int par_len, mesh_cb_fun_par_t *cb_par)
+int mesh_cmd_sig_cfg_bind(u8 *par, int par_len, mesh_cb_fun_par_t *cb_par) // RD_EDIT: bind key
 {    
     //int err = -1;
     bool4 sig_model = (sizeof(mesh_app_bind_t) - 2 == par_len);

@@ -172,7 +172,7 @@ _attribute_ram_code_ void adc_vbat_detect_init(void)
 }
 
 
-_attribute_ram_code_ int app_battery_power_check(u16 alram_vol_mv, int loop_flag)
+_attribute_ram_code_ int app_battery_power_check(u16 alram_vol_mv, int loop_flag)  // RD_EDIT check battery power
 {
     int ret_slept_flag = 0;
 	u16 temp;
@@ -183,8 +183,6 @@ _attribute_ram_code_ int app_battery_power_check(u16 alram_vol_mv, int loop_flag
 		adc_hw_initialized = 1;
 		adc_vbat_detect_init();
 	}
-
-
 
 	adc_reset_adc_module();
 	u32 t0 = clock_time();
@@ -203,9 +201,6 @@ _attribute_ram_code_ int app_battery_power_check(u16 alram_vol_mv, int loop_flag
 	//dfifo setting will lose in suspend/deep, so we need config it every time
 	adc_config_misc_channel_buf((u16 *)adc_dat_buf, ADC_SAMPLE_NUM<<2);  //size: ADC_SAMPLE_NUM*4
 	dfifo_enable_dfifo2();
-
-
-
 
 
 //////////////// get adc sample data and sort these data ////////////////
@@ -243,13 +238,7 @@ _attribute_ram_code_ int app_battery_power_check(u16 alram_vol_mv, int loop_flag
 	}
 //////////////////////////////////////////////////////////////////////////////
 
-
-
-
 	dfifo_disable_dfifo2();   //misc channel data dfifo disable
-
-
-
 
 
 ///// get average value from raw data(abandon some small and big data ), then filter with history data //////
@@ -309,18 +298,12 @@ _attribute_ram_code_ int app_battery_power_check(u16 alram_vol_mv, int loop_flag
 		cpu_sleep_wakeup(DEEPSLEEP_MODE, PM_WAKEUP_PAD, 0);  //deepsleep
 		#else
 		LOG_BATTERY_CHECK_DEBUG(0,0,"battery low, loop:%d, current:%d, thres:%d", loop_flag, batt_vol_mv, alram_vol_mv);
-		battery_power_low_handle(loop_flag);
+		battery_power_low_handle(loop_flag); ////////////////////
 		ret_slept_flag = 1;
 		#endif
 	}else{
 	    // DEEP_ANA_REG0 can not be cleared here, because it will be used in light pwm init.
 	}
-
-
-
-
-
-
 
 
 #if (DBG_ADC_ON_RF_PKT) //debug
@@ -400,7 +383,7 @@ extern u16     batt_vol_mv;
 
 
 
-_attribute_no_inline_ void battery_power_low_handle(int loop_flag)
+_attribute_no_inline_ void battery_power_low_handle(int loop_flag) // RD_EDIT battery power low
 {
     #if __PROJECT_BOOTLOADER__
     sleep_us(50*1000);
@@ -413,6 +396,9 @@ _attribute_no_inline_ void battery_power_low_handle(int loop_flag)
 	cpu_sleep_wakeup(DEEPSLEEP_MODE, PM_WAKEUP_PAD, 0);
 	#else
     cpu_sleep_wakeup(DEEPSLEEP_MODE, PM_WAKEUP_TIMER, clock_time() + 50*CLOCK_SYS_CLOCK_1MS);  //
+    //bls_pm_setWakeupSource(PM_WAKEUP_PAD);
+//    cpu_sleep_wakeup(DEEPSLEEP_MODE, PM_WAKEUP_PAD, 0); // test
+
     #endif
     #endif
 }

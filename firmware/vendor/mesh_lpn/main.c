@@ -32,6 +32,11 @@
 #include "proj_lib/sig_mesh/app_mesh.h"
 #include "vendor/common/mesh_lpn.h"
 
+#include "../TUONG/Config_Pin.h"
+
+static _Bool first_check_prov = FALSE;
+u32 rd_tick = 0;
+
 extern void user_init();
 extern void main_loop ();
 
@@ -135,8 +140,8 @@ _attribute_ram_code_ int main (void)    //must run in ramcode
 #endif
 	{
 		user_init();
+		RD_Config_Pin();
 	}
-
 
     irq_enable();
 	#if (MESH_USER_DEFINE_MODE == MESH_IRONMAN_MENLO_ENABLE)
@@ -148,6 +153,11 @@ _attribute_ram_code_ int main (void)    //must run in ramcode
 		wd_clear(); //clear watch dog
 #endif
 		main_loop ();
+
+		//rd_test_soft_timer();
+		//RD_Wakeup_Source();
+		lpn_factory_reset();
+
 	}
 }
 #endif

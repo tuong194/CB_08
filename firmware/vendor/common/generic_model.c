@@ -46,6 +46,7 @@
 #include "subnet_bridge.h"
 #include "op_agg_model.h"
 #include "solicitation_rpl_cfg_model.h"
+#include "../TUONG/Config_Pin.h"
 #if MD_CMR_EN
 #include "controlled_mesh_relay.h"
 #endif
@@ -303,6 +304,7 @@ int g_onoff_set(mesh_cmd_g_onoff_set_t *p_set, int par_len, int force_last, int 
  */
 int mesh_cmd_sig_g_onoff_set(u8 *par, int par_len, mesh_cb_fun_par_t *cb_par)
 {
+
 	int err = 0;
 #if DEBUG_PUBLISH_REDUCE_COLLISION_TEST_EN
 	rx_ack_num++;

@@ -38,6 +38,9 @@
 #include "vendor/common/solicitation_rpl_cfg_model.h"
 #include "version.h"
 #include "app_privacy_beacon.h"
+
+
+
 #if PAIR_PROVISION_ENABLE
 #include "pair_provision.h"
 #endif
@@ -3084,6 +3087,8 @@ void mesh_node_refresh_binding_tick()
     #endif
     {
         node_binding_tick = clock_time() | 1;
+        //extern void RD_LOG(const char *format, ...);
+        //RD_LOG("node_binding_tick: %d\n", node_binding_tick); // RD_EDIT log node binding tick
     }
 }
 
@@ -5915,7 +5920,7 @@ void mesh_loop_process()
 	if(is_lpn_support_and_en){
 	    #if FEATURE_LOWPOWER_EN
 		mesh_friend_ship_proc_LPN(NULL);
-        mesh_main_loop_LPN();
+        mesh_main_loop_LPN();  // ko co j
 		#endif
 	}else if(is_fn_support_and_en){
 		mesh_friend_ship_proc_FN(NULL);

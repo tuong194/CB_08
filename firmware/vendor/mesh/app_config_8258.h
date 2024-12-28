@@ -101,7 +101,7 @@ extern "C" {
 	#if GATT_RP_EN
 #define HCI_ACCESS		HCI_USE_UART
 	#else
-#define HCI_ACCESS		HCI_USE_NONE
+#define HCI_ACCESS		HCI_USE_UART
 	#endif
 #endif 
 
@@ -436,7 +436,7 @@ extern "C" {
 #elif (MI_API_ENABLE)
 #define CLOCK_SYS_CLOCK_HZ  	48000000
 #else
-#define CLOCK_SYS_CLOCK_HZ  	32000000
+#define CLOCK_SYS_CLOCK_HZ  	16000000
 #endif
 //////////////////Extern Crystal Type///////////////////////
 #define CRYSTAL_TYPE			XTAL_12M		//  extern 12M crystal

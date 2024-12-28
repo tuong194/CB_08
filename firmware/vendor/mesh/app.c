@@ -472,7 +472,7 @@ void main_loop ()
 	////////////////////////////////////// UI entry /////////////////////////////////
 	//  add spp UI task:
 #if (BATT_CHECK_ENABLE)
-    app_battery_power_check_and_sleep_handle(1);
+    app_battery_power_check_and_sleep_handle(1); // check battery
 #endif
 	// du proc
 	#if DU_ENABLE

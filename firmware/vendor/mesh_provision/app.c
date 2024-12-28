@@ -548,7 +548,7 @@ void user_init()
 	}
 	
 	// normally use this settings 
-	blc_ll_setAdvCustomedChannel (37, 38, 39);
+	blc_ll_setAdvCustomedChannel (37, 38, 39); //RD_EDIT: set channel
 
 	bls_ll_setAdvEnable(1);  //adv enable
 

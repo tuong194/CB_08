@@ -42,6 +42,8 @@
 #include "pair_provision.h"
 #endif
 
+#include "../TUONG/Config_Pin.h"
+
 #if (VENDOR_MD_NORMAL_EN)
 model_vd_light_t       	model_vd_light;
 
@@ -1051,7 +1053,12 @@ mesh_cmd_sig_func_t mesh_cmd_vd_func[] = {
 	#endif
 #endif
 
+
+    {RD_OPCODE_TYPE_SEND, 0, VENDOR_MD_LIGHT_C, VENDOR_MD_LIGHT_S, RD_Messenger_ProcessCommingProcess, RD_OPCODE_TYPE_RSP}
+    //CMD_NO_STR(RD_OPCODE_TYPE_SEND, 0, VENDOR_MD_LIGHT_C, VENDOR_MD_LIGHT_S, RD_Messenger_ProcessCommingProcess, RD_OPCODE_TYPE_RSP)
     USER_MESH_CMD_VD_ARRAY
+
+
 };
 
 #if VENDOR_ID_2ND_ENABLE

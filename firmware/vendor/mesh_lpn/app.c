@@ -98,7 +98,7 @@ int soft_timer_test0(void)
 	DBG_CHN4_TOGGLE;
 	static u32 soft_timer_cnt0 = 0;
 	soft_timer_cnt0++;
-	return 0;
+ 	return 0;
 }
 #endif
 
@@ -199,8 +199,11 @@ void proc_ui()
 /////////////////////////////////////////////////////////////////////
 // main loop flow
 /////////////////////////////////////////////////////////////////////
+extern void RD_Config_Pin();
 void main_loop ()
 {
+//	RD_Config_Pin();
+//	bls_pm_setWakeupSource(PM_WAKEUP_PAD);
 	static u32 tick_loop;
 
 	tick_loop ++;
